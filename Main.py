@@ -17,7 +17,7 @@ from llama_index.indices.tree.tree_root_retriever import TreeRootRetriever
 import re
 from langchain.chat_models import ChatOpenAI
 from llama_index.tools import QueryEngineTool, ToolMetadata
-from llama_index.query_engine import SubQuestionQueryEngine
+from llama_index.query_engine import MultiStepQueryEngine
 from langchain.agents import Tool
 from llama_index.query_engine import RetrieverQueryEngine
 import openai
@@ -75,7 +75,7 @@ def preprocessing():
         st.subheader(f"{i + 1}) " + names[i])
         st.write(descriptions[i])
 
-    s_engine = SubQuestionQueryEngine.from_defaults(query_engine_tools = query_engine_tools)
+    s_engine = MultiStepQueryEngine.from_defaults(query_engine_tools = query_engine_tools)
 
     tools = [Tool(
         name = "Llama-Index",
